@@ -1,7 +1,7 @@
 
-class PropertyNotFoundError(Exception):
+class NoPropertiesFoundError(Exception):
     pass
 
 
-class BrowserNotSupportedError(Exception):
+class PageNotFoundError(Exception):
     pass

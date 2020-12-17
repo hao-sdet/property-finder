@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 from requests.exceptions import RequestException
 from .base import MarketPlace
-from src.common.exceptions import PropertyNotFoundError
+from src.common.exceptions import PageNotFoundError
 from src.models import Property
 
 
@@ -56,28 +56,23 @@ class Zillow(MarketPlace):
                 return resp
 
     def search_properties(self, city: str, state: str, limit: int = 10):
-        try:
-            results = []
-            page_number = 1
-            while page_number < self.maximun_pages:
-                url = f'{self.zillow_home_sale_url}/{city}-{state}/{page_number}_p/'
-                resp = self.requests(url, self.request_headers)
-                if not resp: # page not found
-                    break
-                properties = self._get_properties(resp.content)
-                if properties:
-                    results.extend(properties)
-                    if len(results) > limit:
-                        return results[:limit]
-                    else:
-                        page_number += 1
-                else:
-                    if not results or len(results) < limit: # return whatever it had
-                        break
-        except Exception as error:
-            raise PropertyNotFoundError(error)
-        finally:
-            return results
+        results = []
+        for page in range(1, self.maximun_pages + 1):
+            
+            url = f'{self.zillow_home_sale_url}/{city}-{state}/{page}_p/'
+            
+            resp = self.requests(url, self.request_headers)
+            if not resp:
+                raise PageNotFoundError(f'This {url} cant be found!')
+            
+            properties = self._get_properties(resp.content)
+            if properties:
+                results.extend(properties)
+            else:
+                return results
+
+            if len(results) > limit:
+                return results[:limit]
 
     def search_properties_by_price(self, city: str, state: str, min_price: int, max_price: int, limit: int = 10):
         properties = []

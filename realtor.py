@@ -76,6 +76,4 @@ if __name__ == '__main__':
         sys.exit('No matching properties found!')
 
     cheapest_property = price_sorted_properties[0]
-    print(
-        f'Out of {len(properties)} properties, we found {cheapest_property}.'
-    )
+    print(f'Out of {len(properties)} properties, we found {cheapest_property}.')

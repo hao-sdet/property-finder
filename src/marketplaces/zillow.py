@@ -58,9 +58,7 @@ class Zillow(MarketPlace):
     def search_properties(self, city: str, state: str, limit: int = 10):
         results = []
         for page in range(1, self.maximun_pages + 1):
-            
             url = f'{self.zillow_home_sale_url}/{city}-{state}/{page}_p/'
-            
             resp = self.requests(url, self.request_headers)
             if not resp:
                 raise PageNotFoundError(f'This {url} cant be found!')
@@ -73,6 +71,8 @@ class Zillow(MarketPlace):
 
             if len(results) > limit:
                 return results[:limit]
+
+        return results
 
     def search_properties_by_price(self, city: str, state: str, min_price: int, max_price: int, limit: int = 10):
         properties = []

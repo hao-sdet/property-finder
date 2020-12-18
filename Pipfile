@@ -10,6 +10,7 @@ beautifulsoup4 = "*"
 requests = "*"
 selenium = "*"
 lxml = "*"
+pyfiglet = "*"
 
 [requires]
 python_version = "3.8"

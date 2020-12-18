@@ -1,4 +1,4 @@
-  
+```
     __  __                        _______           __           
    / / / /___  ____ ___  ___     / ____(_)___  ____/ /__  _____  
   / /_/ / __ \/ __ `__ \/ _ \   / /_  / / __ \/ __  / _ \/ ___/  
@@ -18,7 +18,7 @@ Out of 100 properties, the top cheapeast properties are:
 {"address": "11738 12th Ave NE, Seattle, WA 98125", "price": 675000, "bedrooms": 3, "bathrooms": 2, "size": 1510}  
 {"address": "6513 Ellis Ave S, Seattle, WA 98108", "price": 699950, "bedrooms": 3, "bathrooms": 2, "size": 1701}  
 ...
-
+```
 ## Requirements
 Python 3.7 and above  
 Pipenv
